@@ -31,7 +31,7 @@ with open(input_csv_path, 'r', newline='', encoding='utf-8') as csvfile:
         queries.append(parsed_url.query)
         fragments.append(parsed_url.fragment)
 
-
+#nilalagay ang mga output sa csv file
 with open(output_csv_path, 'w', newline='', encoding='utf-8') as csvfile:
     fieldnames = ['scheme', 'netloc', 'path', 'params', 'query', 'fragment']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
