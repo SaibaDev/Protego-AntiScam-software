@@ -3,9 +3,11 @@ from urllib.parse import urlparse, parse_qs
 
 
 input_csv_path = 'Datasets\Dataset4.csv'
-output_csv_path = 'cleanedData4.csv'
+output_csv_path = 'cleanedDatapart4.csv'
+
 
 #listt
+urls=[]
 schemes = []
 netlocs = []
 paths = []
@@ -20,7 +22,7 @@ with open(input_csv_path, 'r', newline='', encoding='utf-8') as csvfile:
 
     
     with open(output_csv_path, 'w', newline='', encoding='utf-8') as output_csvfile:
-        fieldnames = ['scheme', 'netloc', 'path', 'params', 'query', 'fragment', 'label']
+        fieldnames = ['urls','scheme', 'netloc', 'path', 'params', 'query', 'fragment', 'label']
         writer = csv.DictWriter(output_csvfile, fieldnames=fieldnames)
         
         
@@ -31,7 +33,7 @@ with open(input_csv_path, 'r', newline='', encoding='utf-8') as csvfile:
             label = row['label']
             parsed_url = urlparse(url)
 
-            
+            urls.append(url)
             schemes.append(parsed_url.scheme)
             netlocs.append(parsed_url.netloc)
             paths.append(parsed_url.path)
@@ -42,6 +44,7 @@ with open(input_csv_path, 'r', newline='', encoding='utf-8') as csvfile:
 
             
             writer.writerow({
+                'urls': url,
                 'scheme': parsed_url.scheme,
                 'netloc': parsed_url.netloc,
                 'path': parsed_url.path,
